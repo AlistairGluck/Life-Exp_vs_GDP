@@ -1,0 +1,17 @@
+base
+gapminder
+tidyverse
+ggplot2
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+rgenoud
+MASS
+anchors
+gganimate
+gifski
+png

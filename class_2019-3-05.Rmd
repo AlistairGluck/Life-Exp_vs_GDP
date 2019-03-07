@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "The World, GDP vs Life Expectancy"
 author: "Alistair Gluck"
 date: "3/5/2019"
 output: html_document
@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r, make_plot, cache = TRUE, echo = FALSE, warning = FALSE, error=FALSE}
 library(gapminder)
 library(tidyverse)
 library(anchors)

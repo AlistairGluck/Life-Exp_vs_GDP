@@ -9,4 +9,32 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(gapminder)
+library(tidyverse)
+library(anchors)
+library(gganimate)
+library(gifski)
+library(png)
+
+
+moving <- gapminder %>% 
+  mutate(continent = fct_collapse(continent, Asia = c("Asia", "Oceania"))) %>% 
+  filter(continent %in% c("Americas", "Africa", "Asia")) %>% 
+  mutate(continent = fct_relevel(continent, c("Americas", "Africa", "Asia")))  %>% 
+  group_by(continent)
+
+moving %>% 
+  ggplot(aes(x = gdpPercap, y = lifeExp, size = pop)) +
+  facet_wrap(~continent) +
+  scale_x_log10(breaks = c(1000, 10000), 
+                labels = c("$1000", "$10,000")) +
+  geom_point(alpha = .5, show.legend = FALSE, aes(color = country)) +
+  scale_color_manual(values = country_colors) +
+  labs(x = "GDP Per Capita",
+       y = "Life Expectancy") + 
+  ggtitle("The World Gets Better Every Year: {frame_time}") +
+  transition_time(year) +
+  ease_aes()
+```
 
